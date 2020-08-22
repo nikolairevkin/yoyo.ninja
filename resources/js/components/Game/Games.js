@@ -1,6 +1,6 @@
-import react, { Component } from "react";
+import React, { Component } from "react";
 
-export default class Votes extends Component {
+export default class Games extends Component {
     render(){
         return(
             <div>

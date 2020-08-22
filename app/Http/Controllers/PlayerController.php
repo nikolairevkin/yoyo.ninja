@@ -17,7 +17,8 @@ class PlayerController extends Controller
                 'status' => $this->status,
                 'success' => true,
                 'count' => count($player),
-                'data' => $player
+                'message' => 'successful',
+                'data' => $player,
             ]);
         } else {
             return response()->json([

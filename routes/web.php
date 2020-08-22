@@ -15,4 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->where('all', '[A-Za-z]+');
+Route::get('/{all}', function () {
+    return view('welcome');
+})->where('all', '[A-Za-z]+');

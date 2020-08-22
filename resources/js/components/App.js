@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import ReactDOM, { render } from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router, Route, NavLink} from 'react-router-dom';
+import '../app.css';
 
-import Players from './Players';
-import Games from './Games';
-import Judges from './Judges';
+import Players from './Player/Players';
+import Games from './Game/Games';
+import Judges from './Judge/Judges';
 import User from './User';
-import Votes from './Votes';
+import Votes from './Vote/Votes';
 import Dash from './Dash';
 
 class App extends Component {
@@ -50,9 +51,9 @@ class App extends Component {
                         <h1>ok</h1>
                         {navLink}
                         <Route exact path="/games" component={Games}></Route>
-                        <Route exact path="/judges" component={Judges}></Route>
-                        <Route exact path="/players" component={Players}></Route>
-                        <Route exact path="/votes" component={Votes}></Route>
+                        <Route path="/judges" component={Judges}></Route>
+                        <Route path="/players" component={Players}></Route>
+                        <Route path="/votes" component={Votes}></Route>
                     </Router>
                 )}
             </div>
