@@ -1,0 +1,43 @@
+.navLink {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 1px;
+    margin-bottom: 0;
+    text-decoration: none;
+    border: solid 1px gray;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    color: black;
+}
+
+.activeLink {
+    background: #505050;
+    color: white !important;
+}
+
+.navLink:hover {
+    text-decoration: none;
+}
+
+.Tab {
+    border-bottom: solid 1px gray;
+}
+
+.card {
+    margin-top: 20px;
+}
+
+.keydown {
+    width: 1000000px;
+    height: 1000000px;
+    display: block;
+    z-index: -10000;
+}
+
+.voteTable th {
+    padding: 0px;
+}
+
+.voteTable th div {
+    padding: 12px;
+}

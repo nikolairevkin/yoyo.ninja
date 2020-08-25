@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM, { render } from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router, Route, NavLink} from 'react-router-dom';
-import '../app.css';
+import './App.css';
 
 import Players from './Player/Players';
 import Games from './Game/Games';
@@ -21,7 +21,7 @@ class App extends Component {
 
     render() {
         let navLink = (
-            <div className="Tab">
+            <div className = "Tab">
                 <NavLink to='/games' activeClassName="activeLink" className="navLink">
                     Games
                 </NavLink>
@@ -40,7 +40,7 @@ class App extends Component {
         const login  = this.state.isLoggedIn;
 
         return(
-            <div className="App">
+            <div className="App" style={{marginTop:50}}>
                 {!login ? (
                     <div>
                         <Dash />
@@ -48,7 +48,6 @@ class App extends Component {
                     </div>
                 ):(
                     <Router>
-                        <h1>ok</h1>
                         {navLink}
                         <Route exact path="/games" component={Games}></Route>
                         <Route path="/judges" component={Judges}></Route>

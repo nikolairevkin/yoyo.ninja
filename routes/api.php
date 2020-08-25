@@ -23,3 +23,17 @@ Route::get('players', 'PlayerController@index');
 Route::post('player', 'PlayerController@createPlayer');
 
 Route::delete('player/{id}', "PlayerController@deletePlayer");
+
+Route::get('games', 'GameController@index');
+
+Route::post('game', 'GameController@createGame');
+
+Route::delete('game/{id}', "GameController@deleteGame");
+
+Route::get('judges', 'JudgeController@index');
+
+Route::post('judge', 'JudgeController@createJudge');
+
+Route::delete('judge/{id}', "JudgeController@deleteJudge");
+
+Route::get('votes', "VoteController@index");

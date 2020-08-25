@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+// require('./main');
 
 /**
  * Next, we will create a fresh React component instance and attach it to

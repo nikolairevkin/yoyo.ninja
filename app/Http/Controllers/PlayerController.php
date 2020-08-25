@@ -11,7 +11,7 @@ class PlayerController extends Controller
     private $status = 200;
 
     public function index() {
-        $player = Player::all();
+        $player = Player::orderBy('name', 'asc')->get();
         if(count($player) > 0) {
             return response()-> json([
                 'status' => $this->status,
@@ -34,7 +34,6 @@ class PlayerController extends Controller
         $validator = Validator::make($request->all(), 
         [
             'name' => 'required',
-            'game_id' => 'required'
         ]);
 
         if($validator->fails()) {
@@ -50,7 +49,6 @@ class PlayerController extends Controller
             if($player == null) {
                 $playerArray = [
                     'name' => $request->name,
-                    'game_id' => $request->game_id,
                 ];
                 $create_id = Player::create($playerArray);
                 if(!is_null($create_id)) {
@@ -58,7 +56,7 @@ class PlayerController extends Controller
                         'status' => $this->status,
                         'success' => true,
                         'message' => 'Player created successfully.',
-                        'data' => $playerArray,
+                        'data' => Player::orderBy('name', 'asc')->get(),
                     ]);
                 }
                 else {
@@ -83,24 +81,29 @@ class PlayerController extends Controller
         $player = Player::find($id);
         if(!is_null($player)) {
             $delete_status = Player::where('id', $id)->delete();
+            $players = Player::orderBy('name', 'asc')->get();
             if($delete_status == 1) {
                 return response()->json([
                     'status' => $this->status,
                     'success' => true,
                     'message' => 'The player deleted successfully.',
+                    'data' => $players,
                 ]);
             } else {
                 return response()->json([
                     'status' => 'failed',
                     'success' => false,
                     'message' => 'Whoops! failed to delete player. Try again',
+                    'data' => $players,
                 ]);
             }
         } else {
             return response() -> json([
                 'status' => 'failed',
                 'success' => false,
-                'message' => 'Whoops! no player found with this id'
+                'message' => 'Whoops! no player found with this id',
+                'data' => Player::orderBy('name', 'asc')->get(),
+
             ]);
         }
     }
