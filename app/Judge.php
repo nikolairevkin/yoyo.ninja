@@ -11,19 +11,12 @@ class Judge extends Model
 
     protected $fillable = ['name'];
 
-    public function selectJudgeByPlayerGame($player_id, $game_id) {
-        $judge_ids = DB::table('judge_players')
-            ->where('player_id', '=', $player_id)
-            ->where('game_id', '=', $game_id)
-            ->groupBy('judge_id');
-        
-        $judges = [];
-
-        foreach ($judge_ids as $judge_id ) {
-            $judge = $this->query()->where('id', '=', $judge_id);
-            array_push($judges, $judge);
-        }
-
+    public function getJudgesByGameANDPlayer($game, $player) {
+        $judges = $this->query()->select(["judges.id", 'judges.name', 'judges.created_at', 'judges.updated_at', 'judge_players.vote_plus', 'judge_players.vote_minus'])
+            ->join('judge_players', 'judges.id', '=', 'judge_players.judge_id')
+            ->where('judge_players.player_id', '=', $player)
+            ->where('judge_players.game_id', '=', $game)
+            ->get();
         return $judges;
     }
 }

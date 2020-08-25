@@ -11,7 +11,7 @@ class GameController extends Controller
     private $status = 200;
 
     public function index() {
-        $game = Game::orderBy('created_at', 'asc')->get();
+        $game = Game::orderBy('created_at', 'desc')->get();
         if(count($game) > 0) {
             return response()-> json([
                 'status' => $this->status,
@@ -56,7 +56,7 @@ class GameController extends Controller
                         'status' => $this->status,
                         'success' => true,
                         'message' => 'Game created successfully.',
-                        'data' => Game::orderBy('created_at', 'asc')->get(),
+                        'data' => Game::orderBy('created_at', 'desc')->get(),
                     ]);
                 }
                 else {
@@ -81,7 +81,7 @@ class GameController extends Controller
         $game = Game::find($id);
         if(!is_null($game)) {
             $delete_status = Game::where('id', $id)->delete();
-            $games = Game::orderBy('created_at', 'asc')->get();
+            $games = Game::orderBy('created_at', 'desc')->get();
             if($delete_status == 1) {
                 return response()->json([
                     'status' => $this->status,
@@ -102,8 +102,7 @@ class GameController extends Controller
                 'status' => 'failed',
                 'success' => false,
                 'message' => 'Whoops! no game found with this id',
-                'data' => Game::orderBy('created_at', 'asc')->get(),
-
+                'data' => Game::orderBy('created_at', 'desc')->get(),
             ]);
         }
     }

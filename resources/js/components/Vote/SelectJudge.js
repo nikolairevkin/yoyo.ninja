@@ -66,7 +66,6 @@ export default class SelectJudge extends Component{
                             <Label for="game">Select game</Label>
                             <Input type="select" name="game" id="gameSelect" 
                                 onChange={(e) => this.onGameSelect(e)}
-                                ref = {this.gameRef}
                             >
                                 {this.props.games.map((game, index) => (
                                     <option key={index}>{game.name}</option>

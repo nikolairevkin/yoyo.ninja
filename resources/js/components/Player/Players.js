@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import {Input, Table, Button, FormGroup, Form} from 'reactstrap';
-import AddModal from './AddModal';
 import DeleteModal from './DeleteModal';
+import AddModal from './AddModal';
+import UpdateModal from './UpdateModal';
 
 export default class Players extends Component {
     constructor(props) {
@@ -68,7 +69,7 @@ export default class Players extends Component {
         });
     }
 
-    handleAdd(name) {
+    handleUpdate(name) {
         const player = {name: name};
         axios
         .post('http://localhost:8000/api/player', player)
@@ -104,11 +105,18 @@ export default class Players extends Component {
                             handleAdd = {(name) => this.handleAdd(name)}
                         />
                         {' '}
+                        <UpdateModal
+                            name = ''
+                            buttonLabel = 'Update'
+                            btnStyle = {this.state.btnStyle}
+                            handleUpdate = {(name) => this.handleUpdate(name)}
+                        />
+                        {' '}
                         <DeleteModal
                             buttonLabel = "Delete"
                             btnStyle = {this.state.btnStyle}
                             handleDelete = {() => this.handleDelete()}
-                        />                      
+                        />
                     </div>
                 </div>
                 <div className="row">

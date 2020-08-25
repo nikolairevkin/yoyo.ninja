@@ -37,3 +37,9 @@ Route::post('judge', 'JudgeController@createJudge');
 Route::delete('judge/{id}', "JudgeController@deleteJudge");
 
 Route::get('votes', "VoteController@index");
+
+Route::get('home', 'DashController@index');
+
+Route::post('home', 'DashController@selectPlayer');
+
+Route::post('judge', 'DashController@selectJudge');

@@ -1,25 +1,43 @@
 import React, { Component } from 'react';
-import ReactDOM, { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router, Route, NavLink} from 'react-router-dom';
 import './App.css';
+import Cookie from 'js-cookie';
 
 import Players from './Player/Players';
 import Games from './Game/Games';
 import Judges from './Judge/Judges';
-import User from './User';
 import Votes from './Vote/Votes';
-import Dash from './Dash';
+import Dash from './Dash/Dash';
+import LoginModal from './LoginModal';
 
 class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isLoggedIn : true,
-        };
+            isLoggedIn : false,
+        }
+        if(Cookie.get('remember')) this.state.isLoggedIn = true;
+        else this.state.isLoggedIn = false;
     };
 
+    handleLogin(name, password, remember) {
+        console.log(name, password, remember);
+        if(remember) Cookie.set('remember', true, {expires: 7});
+        this.setState({isLoggedIn: true});
+    }
+
+    handleLogout() {
+        this.setState({isLoggedIn: false});
+    }
+
     render() {
+        this.state.btnStyle = {
+            display: 'inline-block',
+            float: 'right',
+        };
+
         let navLink = (
             <div className = "Tab">
                 <NavLink to='/games' activeClassName="activeLink" className="navLink">
@@ -41,10 +59,16 @@ class App extends Component {
 
         return(
             <div className="App" style={{marginTop:50}}>
+                <LoginModal 
+                    buttonLabel = {(login)?'Logout': 'Login'}
+                    btnStyle = {this.state.btnStyle}
+                    className = "login"
+                    handleLogin = {(name, password, remember) => this.handleLogin(name, password, remember)}
+                    handleLogout = {() => this.handleLogout()}
+                />
                 {!login ? (
                     <div>
                         <Dash />
-                        <h1>ok</h1>
                     </div>
                 ):(
                     <Router>

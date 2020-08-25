@@ -13,7 +13,7 @@ class CreateJudgePlayersTable extends Migration
      */
     public function up()
     {
-        Schema::create('judge__players', function (Blueprint $table) {
+        Schema::create('judge_players', function (Blueprint $table) {
             $table->id();
             $table->integer('judge_id');
             $table->integer('game_id');
