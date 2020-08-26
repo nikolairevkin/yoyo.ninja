@@ -6965,7 +6965,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".navLink {\r\n    display: inline-block;\r\n    padding: 5px 10px;\r\n    margin: 1px;\r\n    margin-bottom: 0;\r\n    text-decoration: none;\r\n    border: solid 1px gray;\r\n    border-bottom: none;\r\n    border-radius: 5px 5px 0 0;\r\n    color: black;\r\n}\r\n\r\n.activeLink {\r\n    background: #505050;\r\n    color: white !important;\r\n}\r\n\r\n.navLink:hover {\r\n    text-decoration: none;\r\n}\r\n\r\n.Tab {\r\n    border-bottom: solid 1px gray;\r\n}\r\n\r\n.card {\r\n    margin-top: 20px;\r\n}\r\n\r\n.keydown {\r\n    width: 1000000px;\r\n    height: 1000000px;\r\n    display: block;\r\n    z-index: -10000;\r\n}\r\n\r\n.voteTable th {\r\n    padding: 0px;\r\n}\r\n\r\n.voteTable th div {\r\n    padding: 12px;\r\n}", ""]);
+exports.push([module.i, ".navLink {\r\n    display: inline-block;\r\n    padding: 5px 10px;\r\n    margin: 1px;\r\n    margin-bottom: 0;\r\n    text-decoration: none;\r\n    border: solid 1px gray;\r\n    border-bottom: none;\r\n    border-radius: 5px 5px 0 0;\r\n    color: black;\r\n}\r\n\r\n.activeLink {\r\n    background: #505050;\r\n    color: white !important;\r\n}\r\n\r\n.navLink:hover {\r\n    text-decoration: none;\r\n}\r\n\r\n.Tab {\r\n    border-bottom: solid 1px gray;\r\n}\r\n\r\n.card {\r\n    margin-top: 20px;\r\n}\r\n\r\n.keydown {\r\n    width: 1000000px;\r\n    height: 1000000px;\r\n    display: block;\r\n    z-index: -10000;\r\n}\r\n\r\n.voteTable th {\r\n    padding: 0px;\r\n}\r\n\r\n.voteTable th div {\r\n    padding: 12px;\r\n}\r\n\r\n.alert {\r\n    position: absolute;\r\n    width: 300px;\r\n    height: 50px;\r\n    background: #0000ffd9;\r\n    box-shadow: 0 0 2px rgb(0, 0, 255);\r\n    right: 30px;\r\n    color: white;\r\n    top: 100px;\r\n    display: none;\r\n    text-align: center;\r\n    font-size: 17px;\r\n    font-weight: bold;\r\n}", ""]);
 
 // exports
 
@@ -83914,6 +83914,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Vote_Votes__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Vote/Votes */ "./resources/js/components/Vote/Votes.js");
 /* harmony import */ var _Dash_Dash__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Dash/Dash */ "./resources/js/components/Dash/Dash.js");
 /* harmony import */ var _LoginModal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./LoginModal */ "./resources/js/components/LoginModal.js");
+/* harmony import */ var _Home__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Home */ "./resources/js/components/Home.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -83935,6 +83936,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -83971,12 +83973,21 @@ var App = /*#__PURE__*/function (_Component) {
     key: "handleLogin",
     value: function handleLogin(name, password, remember) {
       console.log(name, password, remember);
-      if (remember) js_cookie__WEBPACK_IMPORTED_MODULE_5___default.a.set('remember', true, {
-        expires: 7
-      });
-      this.setState({
-        isLoggedIn: true
-      });
+
+      if (name == 'yoyo_ninja@gmail.com') {
+        if (password == 'yoyo_ninja') {
+          if (remember) js_cookie__WEBPACK_IMPORTED_MODULE_5___default.a.set('remember', true, {
+            expires: 7
+          });
+          this.setState({
+            isLoggedIn: true
+          });
+        } else {
+          alert("Wrong Password!");
+        }
+      } else {
+        alert("Invalid Email!");
+      }
     }
   }, {
     key: "handleLogout",
@@ -84057,6 +84068,22 @@ if (document.getElementById('root')) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Constants.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/Constants.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var Constants = {
+  APP_URL: 'http://localhost:8000'
+};
+/* harmony default export */ __webpack_exports__["default"] = (Constants);
+
+/***/ }),
+
 /***/ "./resources/js/components/Dash/Dash.js":
 /*!**********************************************!*\
   !*** ./resources/js/components/Dash/Dash.js ***!
@@ -84071,6 +84098,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../Constants */ "./resources/js/components/Constants.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84092,6 +84120,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -84131,7 +84160,7 @@ var Dash = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       console.log("Mount OK");
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://yoyo.ninja/api/home').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(_Constants__WEBPACK_IMPORTED_MODULE_3__["default"].APP_URL + '/api/home').then(function (response) {
         _this2.setState({
           isLoading: false
         });
@@ -84216,7 +84245,7 @@ var Dash = /*#__PURE__*/function (_Component) {
       var _this3 = this;
 
       console.log('sendData', data);
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://yoyo.ninja/api/home', data).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(_Constants__WEBPACK_IMPORTED_MODULE_3__["default"].APP_URL + '/api/home', data).then(function (response) {
         if (response.data.status === 200) {
           console.log(response.data);
 
@@ -84237,7 +84266,7 @@ var Dash = /*#__PURE__*/function (_Component) {
       var _this4 = this;
 
       console.log('sendData', data);
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("http://yoyo.ninja/api/judge", data).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(_Constants__WEBPACK_IMPORTED_MODULE_3__["default"].APP_URL + "/api/judge", data).then(function (response) {
         if (response.data.status === 200) {
           console.log(response.data);
           _this4.state.data.judges = response.data.data.judges, _this4.setState({
@@ -84483,6 +84512,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -84498,19 +84529,30 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var DeleteModal = function DeleteModal(props) {
   var btnStyle = props.btnStyle,
       buttonLabel = props.buttonLabel,
       className = props.className,
-      handleDelete = props.handleDelete;
+      handleDelete = props.handleDelete,
+      checked = props.checked;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       modal = _useState2[0],
       setModal = _useState2[1];
 
-  var toggle = function toggle() {
-    return setModal(!modal);
+  var toggleOpen = function toggleOpen() {
+    if (checked.length < 1) {
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").html("No game Selected!");
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").fadeIn('500').delay('2000').fadeOut('500');
+    } else {
+      setModal(!modal);
+    }
+  };
+
+  var toggleClose = function toggleClose() {
+    setModal(!modal);
   };
 
   var handleDeleteClick = function handleDeleteClick() {
@@ -84523,23 +84565,131 @@ var DeleteModal = function DeleteModal(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     color: "danger",
     size: "lg",
-    onClick: toggle
+    onClick: toggleOpen
   }, buttonLabel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
     isOpen: modal,
-    toggle: toggle,
+    toggle: toggleOpen,
     className: className
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalHeader"], {
-    toggle: toggle
-  }, "Delete Game"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalBody"], null, "Are you sure to delete selected game?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalFooter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    toggle: toggleOpen
+  }, "Delete game"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalBody"], null, "Are you sure to delete selected game?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalFooter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     color: "danger",
     onClick: handleDeleteClick
   }, "Delete"), ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     color: "secondary",
-    onClick: toggle
-  }, "Cancel"))));
+    onClick: toggleClose
+  }, "Cancel"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "alert"
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (DeleteModal);
+
+/***/ }),
+
+/***/ "./resources/js/components/Game/EditModal.js":
+/*!***************************************************!*\
+  !*** ./resources/js/components/Game/EditModal.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var EditModal = function EditModal(props) {
+  var btnStyle = props.btnStyle,
+      buttonLabel = props.buttonLabel,
+      className = props.className,
+      handleEdit = props.handleEdit,
+      checked = props.checked;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      modal = _useState2[0],
+      setModal = _useState2[1];
+
+  var toggleOpen = function toggleOpen() {
+    var checkedCount = checked.length;
+
+    if (checkedCount !== 1) {
+      if (checkedCount === 0) {
+        jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").html('No game selected!');
+        jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").fadeIn('500').delay('3000').fadeOut('500');
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").html('Select only one game!');
+        jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").fadeIn('500').delay('3000').fadeOut('500');
+      }
+    } else {
+      name = checked[0].name;
+      setModal(!modal);
+    }
+  };
+
+  var toggleClose = function toggleClose() {
+    setModal(!modal);
+  };
+
+  var handleEditClick = function handleEditClick() {
+    handleEdit(name);
+    setModal(!modal);
+  };
+
+  var nameChange = function nameChange(e) {
+    e.preventDefault();
+    name = e.target.value;
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: btnStyle
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    color: "primary",
+    size: "lg",
+    onClick: toggleOpen
+  }, buttonLabel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
+    isOpen: modal,
+    toggle: toggleOpen,
+    className: className
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalHeader"], {
+    toggle: toggleOpen
+  }, "Edit game"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalBody"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["FormGroup"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Label"], null, "Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+    type: "text",
+    name: "name",
+    id: "name",
+    onChange: nameChange,
+    defaultValue: name
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalFooter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    color: "primary",
+    onClick: handleEditClick
+  }, "Edit"), ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    color: "secondary",
+    onClick: toggleClose
+  }, "Cancel")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "alert"
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (EditModal);
 
 /***/ }),
 
@@ -84558,8 +84708,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
-/* harmony import */ var _AddModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddModal */ "./resources/js/components/Game/AddModal.js");
-/* harmony import */ var _DeleteModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DeleteModal */ "./resources/js/components/Game/DeleteModal.js");
+/* harmony import */ var _DeleteModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DeleteModal */ "./resources/js/components/Game/DeleteModal.js");
+/* harmony import */ var _AddModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AddModal */ "./resources/js/components/Game/AddModal.js");
+/* harmony import */ var _EditModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EditModal */ "./resources/js/components/Game/EditModal.js");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../Constants */ "./resources/js/components/Constants.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_7__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84588,6 +84742,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
+
 var Games = /*#__PURE__*/function (_Component) {
   _inherits(Games, _Component);
 
@@ -84603,7 +84760,8 @@ var Games = /*#__PURE__*/function (_Component) {
       isLoading: true,
       msg: '',
       games: [],
-      checked: []
+      checkedGames: [],
+      blank: ''
     };
     return _this;
   }
@@ -84613,7 +84771,7 @@ var Games = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://yoyo.ninja/api/games').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(_Constants__WEBPACK_IMPORTED_MODULE_6__["default"].APP_URL + '/api/games').then(function (response) {
         _this2.setState({
           isLoading: false
         });
@@ -84627,78 +84785,79 @@ var Games = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      this.state.checked = [];
-      this.state.isLoading = false;
-    }
-  }, {
     key: "handleCheck",
     value: function handleCheck(e) {
       var target = e.target;
-      var value = target.value;
-      var id = target.id;
+      var id = target.value;
+      var checkedGame = '';
+      console.log(id);
 
-      if (target.checked) {
-        this.state.checked[id] = value;
-      } else {
-        delete this.state.checked[id];
+      for (var i = 0; i < this.state.games.length; i++) {
+        if (this.state.games[i].id === parseInt(id)) {
+          console.log(this.state.games[i].id);
+          checkedGame = this.state.games[i];
+        }
       }
 
-      console.log(this.state.checked);
+      var checkedGames = this.state.checkedGames;
+
+      if (!checkedGames.includes(checkedGame)) {
+        checkedGames.push(checkedGame);
+      } else {
+        var position = checkedGames.indexOf(checkedGame);
+        checkedGames.splice(position, 1);
+      }
+
+      console.log(checkedGames);
+      this.setState({
+        checkedGames: checkedGames
+      });
     }
   }, {
     key: "handleDelete",
     value: function handleDelete() {
       var _this3 = this;
 
-      console.log(this.state.checked);
-      var games = this.state.games;
-      this.state.checked.every(function (game) {
-        console.log(game);
+      var checkedGames = this.state.checkedGames;
+      checkedGames.forEach(function (game) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"](_Constants__WEBPACK_IMPORTED_MODULE_6__["default"].APP_URL + '/api/game/' + game.id).then(function (response) {
+          _this3.setState({
+            isLoading: false
+          });
 
-        if (game) {
-          console.log(game);
-          axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('http://yoyo.ninja/api/game/' + game).then(function (response) {
-            console.log(game);
+          _this3.state.msg = response.data.message;
 
+          if (!response.data.success) {
+            return false;
+          } else {
             _this3.setState({
-              isLoading: true
+              games: response.data.data
             });
 
-            _this3.state.msg = response.data.message;
-
-            if (!response.data.success) {
-              return false;
-            } else {
-              console.log(response.data.data);
-
-              _this3.setState({
-                games: response.data.data
-              });
-
-              return true;
-            }
-          });
-        }
+            return true;
+          }
+        });
       });
-      console.log(this.state.msg);
+      checkedGames = [];
+      this.setState({
+        checkedGames: checkedGames
+      });
+      console.log(this.state.checkedGames);
+      jquery__WEBPACK_IMPORTED_MODULE_7___default()("input[type=checkbox]").prop('checked', false);
     }
   }, {
-    key: "handleAdd",
-    value: function handleAdd(name) {
+    key: "handleEdit",
+    value: function handleEdit(name) {
       var _this4 = this;
 
-      var game = {
+      var data = {
         name: name
       };
-      console.log(game);
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://yoyo.ninja/api/game', game).then(function (response) {
+      var game = this.state.checkedGames[0].id;
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(_Constants__WEBPACK_IMPORTED_MODULE_6__["default"].APP_URL + '/api/game/' + game, data).then(function (response) {
         _this4.setState({
-          isLoading: true
+          isLoading: false
         });
-
-        console.log(response.data.success);
 
         if (response.data.success === true) {
           var games = response.data.data;
@@ -84711,18 +84870,53 @@ var Games = /*#__PURE__*/function (_Component) {
             msg: response.data.message
           });
 
-          alert('Game with this name already exists!');
+          jquery__WEBPACK_IMPORTED_MODULE_7___default()("div.alert").html("This name already exists!");
+          jquery__WEBPACK_IMPORTED_MODULE_7___default()("div.alert").fadeIn('500').delay('2000').fadeOut('500');
+        }
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_7___default()("input[type=checkbox]").prop('checked', false);
+    }
+  }, {
+    key: "handleAdd",
+    value: function handleAdd(name) {
+      var _this5 = this;
+
+      var game = {
+        name: name
+      };
+      console.log(game);
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(_Constants__WEBPACK_IMPORTED_MODULE_6__["default"].APP_URL + '/api/game', game).then(function (response) {
+        _this5.setState({
+          isLoading: false
+        });
+
+        console.log(response.data.success);
+
+        if (response.data.success === true) {
+          var games = response.data.data;
+
+          _this5.setState({
+            games: games
+          });
+        } else {
+          _this5.setState({
+            mas: response.data.message
+          });
+
+          jquery__WEBPACK_IMPORTED_MODULE_7___default()("div.alert").html("This name already exists!");
+          jquery__WEBPACK_IMPORTED_MODULE_7___default()("div.alert").fadeIn('500').delay('2000').fadeOut('500');
         }
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this6 = this;
 
       this.state.btnStyle = {
         display: 'inline-block',
-        "float": 'right'
+        "float": 'right',
+        padding: 5
       };
       var isLoading = this.state.isLoading;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -84736,24 +84930,32 @@ var Games = /*#__PURE__*/function (_Component) {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
         buttonLabel: "Add New",
         btnStyle: this.state.btnStyle,
         handleAdd: function handleAdd(name) {
-          return _this5.handleAdd(name);
+          return _this6.handleAdd(name);
         }
-      }), ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DeleteModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }), ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditModal__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        buttonLabel: "Edit",
+        btnStyle: this.state.btnStyle,
+        handleEdit: function handleEdit(name) {
+          return _this6.handleEdit(name);
+        },
+        checked: this.state.checkedGames
+      }), ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DeleteModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
         buttonLabel: "Delete",
         btnStyle: this.state.btnStyle,
         handleDelete: function handleDelete() {
-          return _this5.handleDelete();
-        }
+          return _this6.handleDelete();
+        },
+        checked: this.state.checkedGames
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container",
         style: {
-          marginTop: 10,
+          marginTop: 50,
           maxHeight: 550,
           overflow: 'auto',
           border: '1px solid lightgray'
@@ -84783,14 +84985,79 @@ var Games = /*#__PURE__*/function (_Component) {
           type: "checkbox",
           value: game.id,
           onChange: function onChange(e) {
-            return _this5.handleCheck(e);
+            return _this6.handleCheck(e);
           }
         }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, game.name));
-      })))))));
+      })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "alert"
+      }));
     }
   }]);
 
   return Games;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Home.js":
+/*!*****************************************!*\
+  !*** ./resources/js/components/Home.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Home; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var Home = /*#__PURE__*/function (_Component) {
+  _inherits(Home, _Component);
+
+  var _super = _createSuper(Home);
+
+  function Home() {
+    _classCallCheck(this, Home);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Home, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome to yoyo!"));
+    }
+  }]);
+
+  return Home;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
@@ -84893,6 +85160,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -84908,19 +85177,30 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var DeleteModal = function DeleteModal(props) {
   var btnStyle = props.btnStyle,
       buttonLabel = props.buttonLabel,
       className = props.className,
-      handleDelete = props.handleDelete;
+      handleDelete = props.handleDelete,
+      checked = props.checked;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       modal = _useState2[0],
       setModal = _useState2[1];
 
-  var toggle = function toggle() {
-    return setModal(!modal);
+  var toggleOpen = function toggleOpen() {
+    if (checked.length < 1) {
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").html("No judge Selected!");
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").fadeIn('500').delay('2000').fadeOut('500');
+    } else {
+      setModal(!modal);
+    }
+  };
+
+  var toggleClose = function toggleClose() {
+    setModal(!modal);
   };
 
   var handleDeleteClick = function handleDeleteClick() {
@@ -84933,23 +85213,131 @@ var DeleteModal = function DeleteModal(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     color: "danger",
     size: "lg",
-    onClick: toggle
+    onClick: toggleOpen
   }, buttonLabel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
     isOpen: modal,
-    toggle: toggle,
+    toggle: toggleOpen,
     className: className
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalHeader"], {
-    toggle: toggle
+    toggle: toggleOpen
   }, "Delete judge"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalBody"], null, "Are you sure to delete selected judge?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalFooter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     color: "danger",
     onClick: handleDeleteClick
   }, "Delete"), ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     color: "secondary",
-    onClick: toggle
-  }, "Cancel"))));
+    onClick: toggleClose
+  }, "Cancel"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "alert"
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (DeleteModal);
+
+/***/ }),
+
+/***/ "./resources/js/components/Judge/EditModal.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/Judge/EditModal.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var EditModal = function EditModal(props) {
+  var btnStyle = props.btnStyle,
+      buttonLabel = props.buttonLabel,
+      className = props.className,
+      handleEdit = props.handleEdit,
+      checked = props.checked;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      modal = _useState2[0],
+      setModal = _useState2[1];
+
+  var toggleOpen = function toggleOpen() {
+    var checkedCount = checked.length;
+
+    if (checkedCount !== 1) {
+      if (checkedCount === 0) {
+        jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").html('No judge selected!');
+        jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").fadeIn('500').delay('3000').fadeOut('500');
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").html('Select only one judge!');
+        jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").fadeIn('500').delay('3000').fadeOut('500');
+      }
+    } else {
+      name = checked[0].name;
+      setModal(!modal);
+    }
+  };
+
+  var toggleClose = function toggleClose() {
+    setModal(!modal);
+  };
+
+  var handleEditClick = function handleEditClick() {
+    handleEdit(name);
+    setModal(!modal);
+  };
+
+  var nameChange = function nameChange(e) {
+    e.preventDefault();
+    name = e.target.value;
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: btnStyle
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    color: "primary",
+    size: "lg",
+    onClick: toggleOpen
+  }, buttonLabel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
+    isOpen: modal,
+    toggle: toggleOpen,
+    className: className
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalHeader"], {
+    toggle: toggleOpen
+  }, "Edit judge"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalBody"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["FormGroup"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Label"], null, "Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+    type: "text",
+    name: "name",
+    id: "name",
+    onChange: nameChange,
+    defaultValue: name
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalFooter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    color: "primary",
+    onClick: handleEditClick
+  }, "Edit"), ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    color: "secondary",
+    onClick: toggleClose
+  }, "Cancel")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "alert"
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (EditModal);
 
 /***/ }),
 
@@ -84962,14 +85350,18 @@ var DeleteModal = function DeleteModal(props) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Judges; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return judges; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
-/* harmony import */ var _AddModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddModal */ "./resources/js/components/Judge/AddModal.js");
-/* harmony import */ var _DeleteModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DeleteModal */ "./resources/js/components/Judge/DeleteModal.js");
+/* harmony import */ var _DeleteModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DeleteModal */ "./resources/js/components/Judge/DeleteModal.js");
+/* harmony import */ var _AddModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AddModal */ "./resources/js/components/Judge/AddModal.js");
+/* harmony import */ var _EditModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EditModal */ "./resources/js/components/Judge/EditModal.js");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../Constants */ "./resources/js/components/Constants.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_7__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84998,32 +85390,36 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var Judges = /*#__PURE__*/function (_Component) {
-  _inherits(Judges, _Component);
 
-  var _super = _createSuper(Judges);
 
-  function Judges(props) {
+
+var judges = /*#__PURE__*/function (_Component) {
+  _inherits(judges, _Component);
+
+  var _super = _createSuper(judges);
+
+  function judges(props) {
     var _this;
 
-    _classCallCheck(this, Judges);
+    _classCallCheck(this, judges);
 
     _this = _super.call(this, props);
     _this.state = {
       isLoading: true,
       msg: '',
       judges: [],
-      checked: []
+      checkedJudges: [],
+      blank: ''
     };
     return _this;
   }
 
-  _createClass(Judges, [{
+  _createClass(judges, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://yoyo.ninja/api/judges').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(_Constants__WEBPACK_IMPORTED_MODULE_6__["default"].APP_URL + '/api/judges').then(function (response) {
         _this2.setState({
           isLoading: false
         });
@@ -85037,102 +85433,138 @@ var Judges = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      this.state.checked = [];
-      this.state.isLoading = false;
-    }
-  }, {
     key: "handleCheck",
     value: function handleCheck(e) {
       var target = e.target;
-      var value = target.value;
-      var id = target.id;
+      var id = target.value;
+      var checkedJudge = '';
+      console.log(id);
 
-      if (target.checked) {
-        this.state.checked[id] = value;
-      } else {
-        delete this.state.checked[id];
+      for (var i = 0; i < this.state.judges.length; i++) {
+        if (this.state.judges[i].id === parseInt(id)) {
+          console.log(this.state.judges[i].id);
+          checkedJudge = this.state.judges[i];
+        }
       }
 
-      console.log(this.state.checked);
+      var checkedJudges = this.state.checkedJudges;
+
+      if (!checkedJudges.includes(checkedJudge)) {
+        checkedJudges.push(checkedJudge);
+      } else {
+        var position = checkedJudges.indexOf(checkedJudge);
+        checkedJudges.splice(position, 1);
+      }
+
+      console.log(checkedJudges);
+      this.setState({
+        checkedJudges: checkedJudges
+      });
     }
   }, {
     key: "handleDelete",
     value: function handleDelete() {
       var _this3 = this;
 
-      console.log(this.state.checked);
-      var judges = this.state.judges;
-      this.state.checked.every(function (judge) {
-        console.log(judge);
+      var checkedJudges = this.state.checkedJudges;
+      checkedJudges.forEach(function (judge) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"](_Constants__WEBPACK_IMPORTED_MODULE_6__["default"].APP_URL + '/api/judge/' + judge.id).then(function (response) {
+          _this3.setState({
+            isLoading: false
+          });
 
-        if (judge) {
-          console.log(judge);
-          axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('http://yoyo.ninja/api/judge/' + judge).then(function (response) {
-            console.log(judge);
+          _this3.state.msg = response.data.message;
 
+          if (!response.data.success) {
+            return false;
+          } else {
             _this3.setState({
-              isLoading: true
+              judges: response.data.data
             });
 
-            _this3.state.msg = response.data.message;
+            return true;
+          }
+        });
+      });
+      checkedjudges = [];
+      this.setState({
+        checkedjudges: checkedjudges
+      });
+      console.log(this.state.checkedjudges);
+      jquery__WEBPACK_IMPORTED_MODULE_7___default()("input[type=checkbox]").prop('checked', false);
+    }
+  }, {
+    key: "handleEdit",
+    value: function handleEdit(name) {
+      var _this4 = this;
 
-            if (!response.data.success) {
-              return false;
-            } else {
-              console.log(response.data.data);
+      var data = {
+        name: name
+      };
+      var judge = this.state.checkedjudges[0].id;
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(_Constants__WEBPACK_IMPORTED_MODULE_6__["default"].APP_URL + '/api/judge/' + judge, data).then(function (response) {
+        _this4.setState({
+          isLoading: false
+        });
 
-              _this3.setState({
-                judges: response.data.data
-              });
+        if (response.data.success === true) {
+          var _judges = response.data.data;
 
-              return true;
-            }
+          _this4.setState({
+            judges: _judges
           });
+        } else {
+          _this4.setState({
+            msg: response.data.message
+          });
+
+          jquery__WEBPACK_IMPORTED_MODULE_7___default()("div.alert").html("This name already exists!");
+          jquery__WEBPACK_IMPORTED_MODULE_7___default()("div.alert").fadeIn('500').delay('2000').fadeOut('500');
         }
       });
-      console.log(this.state.msg);
+      jquery__WEBPACK_IMPORTED_MODULE_7___default()("input[type=checkbox]").prop('checked', false);
     }
   }, {
     key: "handleAdd",
     value: function handleAdd(name) {
-      var _this4 = this;
+      var _this5 = this;
 
       var judge = {
         name: name
       };
       console.log(judge);
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://yoyo.ninja/api/judge', judge).then(function (response) {
-        _this4.setState({
-          isLoading: true
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(_Constants__WEBPACK_IMPORTED_MODULE_6__["default"].APP_URL + '/api/judge', judge).then(function (response) {
+        _this5.setState({
+          isLoading: false
         });
 
         console.log(response.data.success);
 
         if (response.data.success === true) {
-          var judges = response.data.data;
+          var _judges2 = response.data.data;
 
-          _this4.setState({
-            judges: judges
+          _this5.setState({
+            judges: _judges2
           });
         } else {
-          _this4.setState({
+          _this5.setState({
             mas: response.data.message
           });
 
-          alert('Judge with this name already exists!');
+          jquery__WEBPACK_IMPORTED_MODULE_7___default()("div.alert").html("This name already exists!");
+          jquery__WEBPACK_IMPORTED_MODULE_7___default()("div.alert").fadeIn('500').delay('2000').fadeOut('500');
         }
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this6 = this;
 
       this.state.btnStyle = {
         display: 'inline-block',
-        "float": 'right'
+        "float": 'right',
+        padding: 5
       };
       var isLoading = this.state.isLoading;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -85146,18 +85578,26 @@ var Judges = /*#__PURE__*/function (_Component) {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
         buttonLabel: "Add New",
         btnStyle: this.state.btnStyle,
         handleAdd: function handleAdd(name) {
-          return _this5.handleAdd(name);
+          return _this6.handleAdd(name);
         }
-      }), ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DeleteModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }), ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditModal__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        buttonLabel: "Edit",
+        btnStyle: this.state.btnStyle,
+        handleEdit: function handleEdit(name) {
+          return _this6.handleEdit(name);
+        },
+        checked: this.state.checkedjudges
+      }), ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DeleteModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
         buttonLabel: "Delete",
         btnStyle: this.state.btnStyle,
         handleDelete: function handleDelete() {
-          return _this5.handleDelete();
-        }
+          return _this6.handleDelete();
+        },
+        checked: this.state.checkedjudges
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -85193,14 +85633,16 @@ var Judges = /*#__PURE__*/function (_Component) {
           type: "checkbox",
           value: judge.id,
           onChange: function onChange(e) {
-            return _this5.handleCheck(e);
+            return _this6.handleCheck(e);
           }
         }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, judge.name));
-      })))))));
+      })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "alert"
+      }));
     }
   }]);
 
-  return Judges;
+  return judges;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
@@ -85424,6 +85866,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -85439,19 +85883,30 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var DeleteModal = function DeleteModal(props) {
   var btnStyle = props.btnStyle,
       buttonLabel = props.buttonLabel,
       className = props.className,
-      handleDelete = props.handleDelete;
+      handleDelete = props.handleDelete,
+      checked = props.checked;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       modal = _useState2[0],
       setModal = _useState2[1];
 
-  var toggle = function toggle() {
-    return setModal(!modal);
+  var toggleOpen = function toggleOpen() {
+    if (checked.length < 1) {
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").html("No player Selected!");
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").fadeIn('500').delay('2000').fadeOut('500');
+    } else {
+      setModal(!modal);
+    }
+  };
+
+  var toggleClose = function toggleClose() {
+    setModal(!modal);
   };
 
   var handleDeleteClick = function handleDeleteClick() {
@@ -85464,23 +85919,131 @@ var DeleteModal = function DeleteModal(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     color: "danger",
     size: "lg",
-    onClick: toggle
+    onClick: toggleOpen
   }, buttonLabel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
     isOpen: modal,
-    toggle: toggle,
+    toggle: toggleOpen,
     className: className
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalHeader"], {
-    toggle: toggle
+    toggle: toggleOpen
   }, "Delete Player"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalBody"], null, "Are you sure to delete selected player?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalFooter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     color: "danger",
     onClick: handleDeleteClick
   }, "Delete"), ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     color: "secondary",
-    onClick: toggle
-  }, "Cancel"))));
+    onClick: toggleClose
+  }, "Cancel"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "alert"
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (DeleteModal);
+
+/***/ }),
+
+/***/ "./resources/js/components/Player/EditModal.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/Player/EditModal.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var EditModal = function EditModal(props) {
+  var btnStyle = props.btnStyle,
+      buttonLabel = props.buttonLabel,
+      className = props.className,
+      handleEdit = props.handleEdit,
+      checked = props.checked;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      modal = _useState2[0],
+      setModal = _useState2[1];
+
+  var toggleOpen = function toggleOpen() {
+    var checkedCount = checked.length;
+
+    if (checkedCount !== 1) {
+      if (checkedCount === 0) {
+        jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").html('No player selected!');
+        jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").fadeIn('500').delay('3000').fadeOut('500');
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").html('Select only one player!');
+        jquery__WEBPACK_IMPORTED_MODULE_2___default()("div.alert").fadeIn('500').delay('3000').fadeOut('500');
+      }
+    } else {
+      name = checked[0].name;
+      setModal(!modal);
+    }
+  };
+
+  var toggleClose = function toggleClose() {
+    setModal(!modal);
+  };
+
+  var handleEditClick = function handleEditClick() {
+    handleEdit(name);
+    setModal(!modal);
+  };
+
+  var nameChange = function nameChange(e) {
+    e.preventDefault();
+    name = e.target.value;
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: btnStyle
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    color: "primary",
+    size: "lg",
+    onClick: toggleOpen
+  }, buttonLabel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
+    isOpen: modal,
+    toggle: toggleOpen,
+    className: className
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalHeader"], {
+    toggle: toggleOpen
+  }, "Edit player"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalBody"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["FormGroup"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Label"], null, "Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+    type: "text",
+    name: "name",
+    id: "name",
+    onChange: nameChange,
+    defaultValue: name
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalFooter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    color: "primary",
+    onClick: handleEditClick
+  }, "Edit"), ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    color: "secondary",
+    onClick: toggleClose
+  }, "Cancel")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "alert"
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (EditModal);
 
 /***/ }),
 
@@ -85501,7 +86064,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
 /* harmony import */ var _DeleteModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DeleteModal */ "./resources/js/components/Player/DeleteModal.js");
 /* harmony import */ var _AddModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AddModal */ "./resources/js/components/Player/AddModal.js");
-/* harmony import */ var _UpdateModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./UpdateModal */ "./resources/js/components/Player/UpdateModal.js");
+/* harmony import */ var _EditModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EditModal */ "./resources/js/components/Player/EditModal.js");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../Constants */ "./resources/js/components/Constants.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_7__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -85531,6 +86097,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
 var Players = /*#__PURE__*/function (_Component) {
   _inherits(Players, _Component);
 
@@ -85546,7 +86114,8 @@ var Players = /*#__PURE__*/function (_Component) {
       isLoading: true,
       msg: '',
       players: [],
-      checked: []
+      checkedPlayers: [],
+      blank: ''
     };
     return _this;
   }
@@ -85556,7 +86125,7 @@ var Players = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://yoyo.ninja/api/players').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(_Constants__WEBPACK_IMPORTED_MODULE_6__["default"].APP_URL + '/api/players').then(function (response) {
         _this2.setState({
           isLoading: false
         });
@@ -85570,63 +86139,78 @@ var Players = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      this.state.checked = [];
-      this.state.isLoading = false;
-    }
-  }, {
     key: "handleCheck",
     value: function handleCheck(e) {
       var target = e.target;
-      var value = target.value;
-      var id = target.id;
+      var id = target.value;
+      var checkedPlayer = '';
+      console.log(id);
 
-      if (target.checked) {
-        this.state.checked[id] = value;
-      } else {
-        delete this.state.checked[id];
+      for (var i = 0; i < this.state.players.length; i++) {
+        if (this.state.players[i].id === parseInt(id)) {
+          console.log(this.state.players[i].id);
+          checkedPlayer = this.state.players[i];
+        }
       }
+
+      var checkedPlayers = this.state.checkedPlayers;
+
+      if (!checkedPlayers.includes(checkedPlayer)) {
+        checkedPlayers.push(checkedPlayer);
+      } else {
+        var position = checkedPlayers.indexOf(checkedPlayer);
+        checkedPlayers.splice(position, 1);
+      }
+
+      console.log(checkedPlayers);
+      this.setState({
+        checkedPlayers: checkedPlayers
+      });
     }
   }, {
     key: "handleDelete",
     value: function handleDelete() {
       var _this3 = this;
 
-      var players = this.state.players;
-      this.state.checked.every(function (player) {
-        if (player) {
-          axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('http://yoyo.ninja/api/player/' + player).then(function (response) {
+      var checkedPlayers = this.state.checkedPlayers;
+      checkedPlayers.forEach(function (player) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"](_Constants__WEBPACK_IMPORTED_MODULE_6__["default"].APP_URL + '/api/player/' + player.id).then(function (response) {
+          _this3.setState({
+            isLoading: false
+          });
+
+          _this3.state.msg = response.data.message;
+
+          if (!response.data.success) {
+            return false;
+          } else {
             _this3.setState({
-              isLoading: true
+              players: response.data.data
             });
 
-            _this3.state.msg = response.data.message;
-
-            if (!response.data.success) {
-              return false;
-            } else {
-              _this3.setState({
-                players: response.data.data
-              });
-
-              return true;
-            }
-          });
-        }
+            return true;
+          }
+        });
       });
+      checkedPlayers = [];
+      this.setState({
+        checkedPlayers: checkedPlayers
+      });
+      console.log(this.state.checkedPlayers);
+      jquery__WEBPACK_IMPORTED_MODULE_7___default()("input[type=checkbox]").prop('checked', false);
     }
   }, {
-    key: "handleUpdate",
-    value: function handleUpdate(name) {
+    key: "handleEdit",
+    value: function handleEdit(name) {
       var _this4 = this;
 
-      var player = {
+      var data = {
         name: name
       };
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://yoyo.ninja/api/player', player).then(function (response) {
+      var player = this.state.checkedPlayers[0].id;
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(_Constants__WEBPACK_IMPORTED_MODULE_6__["default"].APP_URL + '/api/player/' + player, data).then(function (response) {
         _this4.setState({
-          isLoading: true
+          isLoading: false
         });
 
         if (response.data.success === true) {
@@ -85640,18 +86224,53 @@ var Players = /*#__PURE__*/function (_Component) {
             msg: response.data.message
           });
 
-          alert('Player with this name already exists!');
+          jquery__WEBPACK_IMPORTED_MODULE_7___default()("div.alert").html("This name already exists!");
+          jquery__WEBPACK_IMPORTED_MODULE_7___default()("div.alert").fadeIn('500').delay('2000').fadeOut('500');
+        }
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_7___default()("input[type=checkbox]").prop('checked', false);
+    }
+  }, {
+    key: "handleAdd",
+    value: function handleAdd(name) {
+      var _this5 = this;
+
+      var player = {
+        name: name
+      };
+      console.log(player);
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(_Constants__WEBPACK_IMPORTED_MODULE_6__["default"].APP_URL + '/api/player', player).then(function (response) {
+        _this5.setState({
+          isLoading: false
+        });
+
+        console.log(response.data.success);
+
+        if (response.data.success === true) {
+          var players = response.data.data;
+
+          _this5.setState({
+            players: players
+          });
+        } else {
+          _this5.setState({
+            mas: response.data.message
+          });
+
+          jquery__WEBPACK_IMPORTED_MODULE_7___default()("div.alert").html("This name already exists!");
+          jquery__WEBPACK_IMPORTED_MODULE_7___default()("div.alert").fadeIn('500').delay('2000').fadeOut('500');
         }
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this6 = this;
 
       this.state.btnStyle = {
         display: 'inline-block',
-        "float": 'right'
+        "float": 'right',
+        padding: 5
       };
       var isLoading = this.state.isLoading;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -85669,21 +86288,22 @@ var Players = /*#__PURE__*/function (_Component) {
         buttonLabel: "Add New",
         btnStyle: this.state.btnStyle,
         handleAdd: function handleAdd(name) {
-          return _this5.handleAdd(name);
+          return _this6.handleAdd(name);
         }
-      }), ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UpdateModal__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        name: "",
-        buttonLabel: "Update",
+      }), ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditModal__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        buttonLabel: "Edit",
         btnStyle: this.state.btnStyle,
-        handleUpdate: function handleUpdate(name) {
-          return _this5.handleUpdate(name);
-        }
+        handleEdit: function handleEdit(name) {
+          return _this6.handleEdit(name);
+        },
+        checked: this.state.checkedPlayers
       }), ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DeleteModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
         buttonLabel: "Delete",
         btnStyle: this.state.btnStyle,
         handleDelete: function handleDelete() {
-          return _this5.handleDelete();
-        }
+          return _this6.handleDelete();
+        },
+        checked: this.state.checkedPlayers
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -85719,10 +86339,12 @@ var Players = /*#__PURE__*/function (_Component) {
           type: "checkbox",
           value: player.id,
           onChange: function onChange(e) {
-            return _this5.handleCheck(e);
+            return _this6.handleCheck(e);
           }
         }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, player.name));
-      })))))));
+      })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "alert"
+      }));
     }
   }]);
 
@@ -85730,90 +86352,6 @@ var Players = /*#__PURE__*/function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
-
-/***/ }),
-
-/***/ "./resources/js/components/Player/UpdateModal.js":
-/*!*******************************************************!*\
-  !*** ./resources/js/components/Player/UpdateModal.js ***!
-  \*******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-var UpdateModal = function UpdateModal(props) {
-  var name = '';
-  var btnStyle = props.btnStyle,
-      buttonLabel = props.buttonLabel,
-      className = props.className,
-      handleUpdate = props.handleUpdate;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      modal = _useState2[0],
-      setModal = _useState2[1];
-
-  var toggle = function toggle() {
-    return setModal(!modal);
-  };
-
-  var handleUpdateClick = function handleUpdateClick() {
-    handleUpdate(name);
-    setModal(!modal);
-  };
-
-  var nameChange = function nameChange(e) {
-    e.preventDefault();
-    name = e.target.value;
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: btnStyle
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    color: "primary",
-    size: "lg",
-    onClick: toggle
-  }, buttonLabel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
-    isOpen: modal,
-    toggle: toggle,
-    className: className
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalHeader"], {
-    toggle: toggle
-  }, "Update player"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalBody"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["FormGroup"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Label"], null, "Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Input"], {
-    type: "text",
-    name: "name",
-    id: "name",
-    onChange: nameChange,
-    defaultValue: name
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalFooter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    color: "primary",
-    onClick: handleUpdateClick
-  }, "Update"), ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    color: "secondary",
-    onClick: toggle
-  }, "Cancel")))));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (UpdateModal);
 
 /***/ }),
 
@@ -86196,6 +86734,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _SelectJudge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SelectJudge */ "./resources/js/components/Vote/SelectJudge.js");
 /* harmony import */ var _VotePanel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./VotePanel */ "./resources/js/components/Vote/VotePanel.js");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../Constants */ "./resources/js/components/Constants.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -86217,6 +86756,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -86264,7 +86804,7 @@ var Votes = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       this.mounted = true;
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://yoyo.ninja/api/votes').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(_Constants__WEBPACK_IMPORTED_MODULE_4__["default"].APP_URL + '/api/votes').then(function (response) {
         if (_this2.mounted) {
           console.log(response.data.data);
 
@@ -86372,7 +86912,7 @@ var Votes = /*#__PURE__*/function (_Component) {
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, " Votes "), " "), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, " Votes ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SelectJudge__WEBPACK_IMPORTED_MODULE_2__["default"], {
         games: this.state.data.games,
@@ -86384,7 +86924,7 @@ var Votes = /*#__PURE__*/function (_Component) {
         selectedGame: this.state.data.selectedGame,
         selectedPlayer: this.state.data.selectedPlayer,
         selectedJudge: this.state.data.selectedJudge
-      }), " "), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_VotePanel__WEBPACK_IMPORTED_MODULE_3__["default"], {
         data: this.state.tableData,
@@ -86393,7 +86933,7 @@ var Votes = /*#__PURE__*/function (_Component) {
         onResetClick: function onResetClick() {
           return _this3.handleResetClick();
         }
-      }), " "), " ");
+      })));
     }
   }]);
 

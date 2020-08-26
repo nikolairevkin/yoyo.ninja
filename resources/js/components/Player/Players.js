@@ -4,7 +4,9 @@ import axios from 'axios';
 import {Input, Table, Button, FormGroup, Form} from 'reactstrap';
 import DeleteModal from './DeleteModal';
 import AddModal from './AddModal';
-import UpdateModal from './UpdateModal';
+import EditModal from './EditModal';
+import Constants from './../Constants';
+import $ from 'jquery';
 
 export default class Players extends Component {
     constructor(props) {
@@ -13,13 +15,14 @@ export default class Players extends Component {
             isLoading: true,
             msg: '',
             players : [],
-            checked: [],
+            checkedPlayers: [],
+            blank: ''
         };
     };
 
     componentDidMount() {
         axios
-        .get('http://yoyo.ninja/api/players')
+        .get(Constants.APP_URL+'/api/players')
         .then((response) => {
             this.setState({isLoading: false});
             if(response.data.status === 200) {
@@ -31,64 +34,96 @@ export default class Players extends Component {
         });
     }
 
-    componentDidUpdate() {
-        this.state.checked = [];
-        this.state.isLoading = false;
-    }
-
     handleCheck(e) {
         const target= e.target;
-        var value = target.value;
-        var id = target.id;
+        var id = target.value;
+        var checkedPlayer = '';
+        console.log(id);
 
-        if(target.checked){
-            this.state.checked[id] = value;
-        } else {
-            delete this.state.checked[id];
+        for(var i = 0; i < this.state.players.length ; i++) {
+            if(this.state.players[i].id === parseInt(id)) {
+                console.log(this.state.players[i].id);
+                checkedPlayer = this.state.players[i];
+            }
         }
+
+        var checkedPlayers = this.state.checkedPlayers;
+        if(!checkedPlayers.includes(checkedPlayer)){
+            checkedPlayers.push(checkedPlayer);
+        } else {
+            const position = checkedPlayers.indexOf(checkedPlayer);
+            checkedPlayers.splice(position, 1);
+        }
+        console.log(checkedPlayers);
+        this.setState({checkedPlayers});
     }
 
     handleDelete() {
-        const players = this.state.players;
-        
-        this.state.checked.every((player) => {
-            if(player) {
-                axios
-                .delete('http://yoyo.ninja/api/player/' + player)
-                .then((response)=>{
-                    this.setState({isLoading: true});
-                    this.state.msg = response.data.message;
-                    if(!response.data.success) {
-                        return false;
-                    } else {
-                        this.setState({players: response.data.data});
-                        return true;
-                    }
-                });
-            }
+        var checkedPlayers = this.state.checkedPlayers;
+        checkedPlayers.forEach(player => {
+            axios
+            .delete(Constants.APP_URL+'/api/player/' + player.id)
+            .then((response)=>{
+                this.setState({isLoading: false});
+                this.state.msg = response.data.message;
+                if(!response.data.success) {
+                    return false;
+                } else {
+                    this.setState({players: response.data.data});
+                    return true;
+                }
+            });        
         });
+        checkedPlayers = [];
+        this.setState({checkedPlayers});
+        console.log(this.state.checkedPlayers);
+        $("input[type=checkbox]").prop('checked', false);
     }
 
-    handleUpdate(name) {
-        const player = {name: name};
+    handleEdit(name) {
+        const data = {name: name};
+        const player = this.state.checkedPlayers[0].id;
         axios
-        .post('http://yoyo.ninja/api/player', player)
+        .post(Constants.APP_URL+'/api/player/'+player, data)
         .then((response) => {
-            this.setState({isLoading: true});
+            this.setState({isLoading: false});
             if(response.data.success === true) {
                 const players = response.data.data;
                 this.setState({players});
             }else {
                 this.setState({msg: response.data.message});
-                alert('Player with this name already exists!');
+                $("div.alert").html("This name already exists!");
+                $("div.alert").fadeIn('500').delay('2000').fadeOut('500');
+            }
+        });
+        $("input[type=checkbox]").prop('checked', false);
+    }
+
+    handleAdd(name) {
+        const player = {name: name};
+        console.log(player);
+        axios
+        .post(Constants.APP_URL+'/api/player', player)
+        .then((response) => {
+            this.setState({isLoading: false});
+            console.log(response.data.success);
+            if(response.data.success === true) {
+                const players = response.data.data;
+                this.setState({players});
+            } else {
+                this.setState({mas: response.data.message});
+                $("div.alert").html("This name already exists!");
+                $("div.alert").fadeIn('500').delay('2000').fadeOut('500');
             }
         });
     }
+
 
     render() {
         this.state.btnStyle = {
             display: 'inline-block',
             float: 'right',
+            padding: 5,
         };
       
         const isLoading = this.state.isLoading;
@@ -105,17 +140,18 @@ export default class Players extends Component {
                             handleAdd = {(name) => this.handleAdd(name)}
                         />
                         {' '}
-                        <UpdateModal
-                            name = ''
-                            buttonLabel = 'Update'
+                        <EditModal
+                            buttonLabel = 'Edit'
                             btnStyle = {this.state.btnStyle}
-                            handleUpdate = {(name) => this.handleUpdate(name)}
+                            handleEdit = {(name) => this.handleEdit(name)}
+                            checked = {this.state.checkedPlayers}
                         />
                         {' '}
                         <DeleteModal
                             buttonLabel = "Delete"
                             btnStyle = {this.state.btnStyle}
                             handleDelete = {() => this.handleDelete()}
+                            checked = {this.state.checkedPlayers}
                         />
                     </div>
                 </div>
@@ -146,8 +182,8 @@ export default class Players extends Component {
                                     <tr key={index}>
                                         <th scope='row'>
                                             <FormGroup check>
-                                                <Input name='players' id={index} 
-                                                    type='checkbox' value={player.id} 
+                                                <Input name='players' id={index}
+                                                    type='checkbox' value={player.id}
                                                     onChange={e => this.handleCheck(e)}
                                                 />
                                             </FormGroup></th>
@@ -160,6 +196,7 @@ export default class Players extends Component {
                         </Form>
                     </div>
                 </div>
+                <div className="alert"></div>
             </div>
         );
     }

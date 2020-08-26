@@ -107,4 +107,26 @@ class PlayerController extends Controller
             ]);
         }
     }
+
+    public function editPlayer(Request $request, $id) {
+        $newName = $request->name;
+        $player = Player::where('name', '=', $newName)->first();
+        if(is_null($player)) {
+            $player = Player::where('id', '=', $id)
+                ->update(['name'=> $newName]);
+            $players = Player::orderBy('name', 'asc')->get();
+            return response()->json([
+                "status" => $this->status,
+                'success' => true,
+                'data' => $players,
+                'msg' => 'Updated Successfully!',
+            ]);
+        } else {
+            return response()->json([
+                'status' => $this->status,
+                'success' => false,
+                'msg' => 'This name already exists!',
+            ]);
+        }
+    }
 }

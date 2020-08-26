@@ -1,17 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-use Validator;
-use App\Game;
 
 use Illuminate\Http\Request;
+use Validator;
+use App\Game;
 
 class GameController extends Controller
 {
     private $status = 200;
 
     public function index() {
-        $game = Game::orderBy('created_at', 'desc')->get();
+        $game = Game::orderBy('name', 'asc')->get();
         if(count($game) > 0) {
             return response()-> json([
                 'status' => $this->status,
@@ -56,7 +56,7 @@ class GameController extends Controller
                         'status' => $this->status,
                         'success' => true,
                         'message' => 'Game created successfully.',
-                        'data' => Game::orderBy('created_at', 'desc')->get(),
+                        'data' => Game::orderBy('name', 'asc')->get(),
                     ]);
                 }
                 else {
@@ -71,7 +71,7 @@ class GameController extends Controller
                 return response()->json([
                     'status' => 'failed',
                     'success' => false,
-                    'message' => 'Whoops! the Game exists already.',
+                    'message' => 'Whoops! the game exists already.',
                 ]);
             }
         }
@@ -81,7 +81,7 @@ class GameController extends Controller
         $game = Game::find($id);
         if(!is_null($game)) {
             $delete_status = Game::where('id', $id)->delete();
-            $games = Game::orderBy('created_at', 'desc')->get();
+            $games = Game::orderBy('name', 'asc')->get();
             if($delete_status == 1) {
                 return response()->json([
                     'status' => $this->status,
@@ -102,7 +102,30 @@ class GameController extends Controller
                 'status' => 'failed',
                 'success' => false,
                 'message' => 'Whoops! no game found with this id',
-                'data' => Game::orderBy('created_at', 'desc')->get(),
+                'data' => Game::orderBy('name', 'asc')->get(),
+
+            ]);
+        }
+    }
+
+    public function editGame(Request $request, $id) {
+        $newName = $request->name;
+        $game = Game::where('name', '=', $newName)->first();
+        if(is_null($game)) {
+            $game = Game::where('id', '=', $id)
+                ->update(['name'=> $newName]);
+            $games = Game::orderBy('name', 'asc')->get();
+            return response()->json([
+                "status" => $this->status,
+                'success' => true,
+                'data' => $games,
+                'msg' => 'Updated Successfully!',
+            ]);
+        } else {
+            return response()->json([
+                'status' => $this->status,
+                'success' => false,
+                'msg' => 'This name already exists!',
             ]);
         }
     }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {Input, FormGroup, Label, Col, Row, Table, Form} from 'reactstrap';
+import Constants from './../Constants';
 
 class Dash extends Component {
     constructor(props) {
@@ -24,7 +25,7 @@ class Dash extends Component {
     componentDidMount() {
         console.log("Mount OK");
         axios
-            .get('http://yoyo.ninja/api/home')
+            .get(Constants.APP_URL+'/api/home')
             .then((response) => {
                 this.setState({ isLoading: false });
                 if (response.data.status === 200) {
@@ -93,7 +94,7 @@ class Dash extends Component {
     selectPlayers(data) {
         console.log('sendData',data);
         axios
-        .post('http://yoyo.ninja/api/home', data)
+        .post(Constants.APP_URL+'/api/home', data)
         .then((response)=> {
             if(response.data.status === 200) {
                 console.log(response.data);
@@ -104,7 +105,7 @@ class Dash extends Component {
             } else {
                 this.setState({
                     responseStatus: false,
-                })
+                });
             }
         });
     }
@@ -112,7 +113,7 @@ class Dash extends Component {
     selectJudges(data) {
         console.log('sendData', data);
         axios
-        .post("http://yoyo.ninja/api/judge", data)
+        .post(Constants.APP_URL+"/api/judge", data)
         .then((response) => {
             if(response.data.status === 200) {
                 console.log(response.data);

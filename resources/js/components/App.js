@@ -11,6 +11,7 @@ import Judges from './Judge/Judges';
 import Votes from './Vote/Votes';
 import Dash from './Dash/Dash';
 import LoginModal from './LoginModal';
+import Home from './Home';
 
 class App extends Component {
     constructor(props) {
@@ -24,8 +25,16 @@ class App extends Component {
 
     handleLogin(name, password, remember) {
         console.log(name, password, remember);
-        if(remember) Cookie.set('remember', true, {expires: 7});
-        this.setState({isLoggedIn: true});
+        if(name == 'yoyo_ninja@gmail.com'){
+            if(password == 'yoyo_ninja'){
+                if(remember) Cookie.set('remember', true, {expires: 7});
+                this.setState({isLoggedIn: true});
+            } else {
+                alert("Wrong Password!");
+            }
+        } else {
+            alert("Invalid Email!");
+        }
     }
 
     handleLogout() {

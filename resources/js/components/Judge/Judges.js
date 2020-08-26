@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import {Input, Table, FormGroup, Form} from 'reactstrap';
-import AddModal from './AddModal';
+import {Input, Table, Button, FormGroup, Form} from 'reactstrap';
 import DeleteModal from './DeleteModal';
+import AddModal from './AddModal';
+import EditModal from './EditModal';
+import Constants from './../Constants';
+import $ from 'jquery';
 
-export default class Judges extends Component {
+export default class judges extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoading: true,
             msg: '',
             judges : [],
-            checked: [],
+            checkedJudges: [],
+            blank: ''
         };
     };
 
     componentDidMount() {
         axios
-        .get('http://yoyo.ninja/api/judges')
+        .get(Constants.APP_URL+'/api/judges')
         .then((response) => {
             this.setState({isLoading: false});
             if(response.data.status === 200) {
@@ -30,73 +34,96 @@ export default class Judges extends Component {
         });
     }
 
-    componentDidUpdate() {
-        this.state.checked = [];
-        this.state.isLoading = false;
-    }
-
     handleCheck(e) {
         const target= e.target;
-        var value = target.value;
-        var id = target.id;
+        var id = target.value;
+        var checkedJudge = '';
+        console.log(id);
 
-        if(target.checked){
-            this.state.checked[id] = value;
-        } else {
-            delete this.state.checked[id];
+        for(var i = 0; i < this.state.judges.length ; i++) {
+            if(this.state.judges[i].id === parseInt(id)) {
+                console.log(this.state.judges[i].id);
+                checkedJudge = this.state.judges[i];
+            }
         }
-        console.log(this.state.checked);
+
+        var checkedJudges = this.state.checkedJudges;
+        if(!checkedJudges.includes(checkedJudge)){
+            checkedJudges.push(checkedJudge);
+        } else {
+            const position = checkedJudges.indexOf(checkedJudge);
+            checkedJudges.splice(position, 1);
+        }
+        console.log(checkedJudges);
+        this.setState({checkedJudges});
     }
 
     handleDelete() {
-        console.log(this.state.checked);
-        const judges = this.state.judges;
-        
-        this.state.checked.every((judge) => {
-            console.log(judge);
-            if(judge) {
-                console.log(judge);
-                axios
-                .delete('http://yoyo.ninja/api/judge/' + judge)
-                .then((response)=>{
-                    console.log(judge);
-                    this.setState({isLoading: true});
-                    this.state.msg = response.data.message;
-                    if(!response.data.success) {
-                        return false;
-                    } else {
-                        console.log(response.data.data)
-                        this.setState({judges: response.data.data});
-                        return true;
-                    }
-                });
+        var checkedJudges = this.state.checkedJudges;
+        checkedJudges.forEach(judge => {
+            axios
+            .delete(Constants.APP_URL+'/api/judge/' + judge.id)
+            .then((response)=>{
+                this.setState({isLoading: false});
+                this.state.msg = response.data.message;
+                if(!response.data.success) {
+                    return false;
+                } else {
+                    this.setState({judges: response.data.data});
+                    return true;
+                }
+            });        
+        });
+        checkedjudges = [];
+        this.setState({checkedjudges});
+        console.log(this.state.checkedjudges);
+        $("input[type=checkbox]").prop('checked', false);
+    }
+
+    handleEdit(name) {
+        const data = {name: name};
+        const judge = this.state.checkedjudges[0].id;
+        axios
+        .post(Constants.APP_URL+'/api/judge/'+judge, data)
+        .then((response) => {
+            this.setState({isLoading: false});
+            if(response.data.success === true) {
+                const judges = response.data.data;
+                this.setState({judges});
+            }else {
+                this.setState({msg: response.data.message});
+                $("div.alert").html("This name already exists!");
+                $("div.alert").fadeIn('500').delay('2000').fadeOut('500');
             }
         });
-        console.log(this.state.msg);
+        $("input[type=checkbox]").prop('checked', false);
     }
 
     handleAdd(name) {
         const judge = {name: name};
         console.log(judge);
         axios
-        .post('http://yoyo.ninja/api/judge', judge)
+        .post(Constants.APP_URL+'/api/judge', judge)
         .then((response) => {
-            this.setState({isLoading: true});
+            this.setState({isLoading: false});
             console.log(response.data.success);
             if(response.data.success === true) {
                 const judges = response.data.data;
                 this.setState({judges});
             } else {
                 this.setState({mas: response.data.message});
-                alert('Judge with this name already exists!');
+                $("div.alert").html("This name already exists!");
+                $("div.alert").fadeIn('500').delay('2000').fadeOut('500');
             }
         });
     }
+
 
     render() {
         this.state.btnStyle = {
             display: 'inline-block',
             float: 'right',
+            padding: 5,
         };
       
         const isLoading = this.state.isLoading;
@@ -113,11 +140,19 @@ export default class Judges extends Component {
                             handleAdd = {(name) => this.handleAdd(name)}
                         />
                         {' '}
+                        <EditModal
+                            buttonLabel = 'Edit'
+                            btnStyle = {this.state.btnStyle}
+                            handleEdit = {(name) => this.handleEdit(name)}
+                            checked = {this.state.checkedjudges}
+                        />
+                        {' '}
                         <DeleteModal
                             buttonLabel = "Delete"
                             btnStyle = {this.state.btnStyle}
                             handleDelete = {() => this.handleDelete()}
-                        />                      
+                            checked = {this.state.checkedjudges}
+                        />
                     </div>
                 </div>
                 <div className="row">
@@ -147,8 +182,8 @@ export default class Judges extends Component {
                                     <tr key={index}>
                                         <th scope='row'>
                                             <FormGroup check>
-                                                <Input name='judges' id={index} 
-                                                    type='checkbox' value={judge.id} 
+                                                <Input name='judges' id={index}
+                                                    type='checkbox' value={judge.id}
                                                     onChange={e => this.handleCheck(e)}
                                                 />
                                             </FormGroup></th>
@@ -161,6 +196,7 @@ export default class Judges extends Component {
                         </Form>
                     </div>
                 </div>
+                <div className="alert"></div>
             </div>
         );
     }

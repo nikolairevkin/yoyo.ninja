@@ -41,3 +41,18 @@
 .voteTable th div {
     padding: 12px;
 }
+
+.alert {
+    position: absolute;
+    width: 300px;
+    height: 50px;
+    background: #0000ffd9;
+    box-shadow: 0 0 2px rgb(0, 0, 255);
+    right: 30px;
+    color: white;
+    top: 100px;
+    display: none;
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+}

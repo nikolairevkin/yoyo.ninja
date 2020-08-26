@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Validator;
-use App\Judge;
 
 use Illuminate\Http\Request;
+use Validator;
+use App\Judge;
 
 class JudgeController extends Controller
 {
@@ -71,7 +71,7 @@ class JudgeController extends Controller
                 return response()->json([
                     'status' => 'failed',
                     'success' => false,
-                    'message' => 'Whoops! the Judge exists already.',
+                    'message' => 'Whoops! the judge exists already.',
                 ]);
             }
         }
@@ -104,6 +104,28 @@ class JudgeController extends Controller
                 'message' => 'Whoops! no judge found with this id',
                 'data' => Judge::orderBy('name', 'asc')->get(),
 
+            ]);
+        }
+    }
+
+    public function editJudge(Request $request, $id) {
+        $newName = $request->name;
+        $judge = Judge::where('name', '=', $newName)->first();
+        if(is_null($judge)) {
+            $judge = Judge::where('id', '=', $id)
+                ->update(['name'=> $newName]);
+            $judges = Judge::orderBy('name', 'asc')->get();
+            return response()->json([
+                "status" => $this->status,
+                'success' => true,
+                'data' => $judges,
+                'msg' => 'Updated Successfully!',
+            ]);
+        } else {
+            return response()->json([
+                'status' => $this->status,
+                'success' => false,
+                'msg' => 'This name already exists!',
             ]);
         }
     }

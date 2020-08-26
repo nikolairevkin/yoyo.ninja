@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import SelectJudge from './SelectJudge';
 import VotePanel from './VotePanel';
+import Constants from './../Constants';
 
 export default class Votes extends Component {
     constructor(props) {
@@ -32,7 +33,7 @@ export default class Votes extends Component {
     componentDidMount() {
         this.mounted = true;
         axios
-            .get('http://yoyo.ninja/api/votes')
+            .get(Constants.APP_URL+'/api/votes')
             .then((response) => {
                 if (this.mounted) {
                     console.log(response.data.data);
@@ -113,39 +114,31 @@ export default class Votes extends Component {
     }
 
     render() {
-        return ( <
-            div style = {
-                { marginTop: 50 } }
-            tabIndex = "0"
-            onKeyUp = {
-                (e) => this.handleKeyUp(e) } >
-            <
-            div className = "row" >
-            <
-            h1 > Votes < /h1> <
-            /div> <
-            div className = "row" >
-            <
-            SelectJudge games = { this.state.data.games }
-            players = { this.state.data.players }
-            judges = { this.state.data.judges }
-            handleCreate = {
-                (game, player, judge) => this.handleCreate(game, player, judge) }
-            selectedGame = { this.state.data.selectedGame }
-            selectedPlayer = { this.state.data.selectedPlayer }
-            selectedJudge = { this.state.data.selectedJudge }
-            /> <
-            /div> <
-            div className = "row" >
-            <
-            VotePanel data = { this.state.tableData }
-            vote_plus = { this.state.vote_plus }
-            vote_minus = { this.state.vote_minus }
-            onResetClick = {
-                () => this.handleResetClick() }
-            /> <
-            /div> <
-            /div>
+        return ( 
+            <div style = {{ marginTop: 50 }} tabIndex = "0" onKeyUp = {(e) => this.handleKeyUp(e) } >
+                <div className = "row" >
+                    <h1> Votes </h1> 
+                </div>
+                <div className = "row" >
+                    <SelectJudge 
+                        games = { this.state.data.games }
+                        players = { this.state.data.players }
+                        judges = { this.state.data.judges }
+                        handleCreate = { (game, player, judge) => this.handleCreate(game, player, judge) }
+                        selectedGame = { this.state.data.selectedGame }
+                        selectedPlayer = { this.state.data.selectedPlayer }
+                        selectedJudge = { this.state.data.selectedJudge }
+                    />
+                </div>
+                <div className = "row" >
+                    <VotePanel
+                        data = { this.state.tableData }
+                        vote_plus = { this.state.vote_plus }
+                        vote_minus = { this.state.vote_minus }
+                        onResetClick = { () => this.handleResetClick() }
+                    /> 
+                </div>
+            </div>
         );
     }
 }
