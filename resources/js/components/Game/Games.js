@@ -18,7 +18,7 @@ export default class Games extends Component {
 
     componentDidMount() {
         axios
-        .get('http://localhost:8000/api/games')
+        .get('http://yoyo.ninja/api/games')
         .then((response) => {
             this.setState({isLoading: false});
             if(response.data.status === 200) {
@@ -57,7 +57,7 @@ export default class Games extends Component {
             if(game) {
                 console.log(game);
                 axios
-                .delete('http://localhost:8000/api/game/' + game)
+                .delete('http://yoyo.ninja/api/game/' + game)
                 .then((response)=>{
                     console.log(game);
                     this.setState({isLoading: true});
@@ -79,7 +79,7 @@ export default class Games extends Component {
         const game = {name: name};
         console.log(game);
         axios
-        .post('http://localhost:8000/api/game', game)
+        .post('http://yoyo.ninja/api/game', game)
         .then((response) => {
             this.setState({isLoading: true});
             console.log(response.data.success);

@@ -18,7 +18,7 @@ export default class Judges extends Component {
 
     componentDidMount() {
         axios
-        .get('http://localhost:8000/api/judges')
+        .get('http://yoyo.ninja/api/judges')
         .then((response) => {
             this.setState({isLoading: false});
             if(response.data.status === 200) {
@@ -57,7 +57,7 @@ export default class Judges extends Component {
             if(judge) {
                 console.log(judge);
                 axios
-                .delete('http://localhost:8000/api/judge/' + judge)
+                .delete('http://yoyo.ninja/api/judge/' + judge)
                 .then((response)=>{
                     console.log(judge);
                     this.setState({isLoading: true});
@@ -79,7 +79,7 @@ export default class Judges extends Component {
         const judge = {name: name};
         console.log(judge);
         axios
-        .post('http://localhost:8000/api/judge', judge)
+        .post('http://yoyo.ninja/api/judge', judge)
         .then((response) => {
             this.setState({isLoading: true});
             console.log(response.data.success);

@@ -84131,7 +84131,7 @@ var Dash = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       console.log("Mount OK");
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://localhost:8000/api/home').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://yoyo.ninja/api/home').then(function (response) {
         _this2.setState({
           isLoading: false
         });
@@ -84216,7 +84216,7 @@ var Dash = /*#__PURE__*/function (_Component) {
       var _this3 = this;
 
       console.log('sendData', data);
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://localhost:8000/api/home', data).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://yoyo.ninja/api/home', data).then(function (response) {
         if (response.data.status === 200) {
           console.log(response.data);
 
@@ -84237,7 +84237,7 @@ var Dash = /*#__PURE__*/function (_Component) {
       var _this4 = this;
 
       console.log('sendData', data);
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("http://localhost:8000/api/judge", data).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("http://yoyo.ninja/api/judge", data).then(function (response) {
         if (response.data.status === 200) {
           console.log(response.data);
           _this4.state.data.judges = response.data.data.judges, _this4.setState({
@@ -84613,7 +84613,7 @@ var Games = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://localhost:8000/api/games').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://yoyo.ninja/api/games').then(function (response) {
         _this2.setState({
           isLoading: false
         });
@@ -84659,7 +84659,7 @@ var Games = /*#__PURE__*/function (_Component) {
 
         if (game) {
           console.log(game);
-          axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('http://localhost:8000/api/game/' + game).then(function (response) {
+          axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('http://yoyo.ninja/api/game/' + game).then(function (response) {
             console.log(game);
 
             _this3.setState({
@@ -84693,7 +84693,7 @@ var Games = /*#__PURE__*/function (_Component) {
         name: name
       };
       console.log(game);
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://localhost:8000/api/game', game).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://yoyo.ninja/api/game', game).then(function (response) {
         _this4.setState({
           isLoading: true
         });
@@ -85023,7 +85023,7 @@ var Judges = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://localhost:8000/api/judges').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://yoyo.ninja/api/judges').then(function (response) {
         _this2.setState({
           isLoading: false
         });
@@ -85069,7 +85069,7 @@ var Judges = /*#__PURE__*/function (_Component) {
 
         if (judge) {
           console.log(judge);
-          axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('http://localhost:8000/api/judge/' + judge).then(function (response) {
+          axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('http://yoyo.ninja/api/judge/' + judge).then(function (response) {
             console.log(judge);
 
             _this3.setState({
@@ -85103,7 +85103,7 @@ var Judges = /*#__PURE__*/function (_Component) {
         name: name
       };
       console.log(judge);
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://localhost:8000/api/judge', judge).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://yoyo.ninja/api/judge', judge).then(function (response) {
         _this4.setState({
           isLoading: true
         });
@@ -85556,7 +85556,7 @@ var Players = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://localhost:8000/api/players').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://yoyo.ninja/api/players').then(function (response) {
         _this2.setState({
           isLoading: false
         });
@@ -85596,7 +85596,7 @@ var Players = /*#__PURE__*/function (_Component) {
       var players = this.state.players;
       this.state.checked.every(function (player) {
         if (player) {
-          axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('http://localhost:8000/api/player/' + player).then(function (response) {
+          axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]('http://yoyo.ninja/api/player/' + player).then(function (response) {
             _this3.setState({
               isLoading: true
             });
@@ -85624,7 +85624,7 @@ var Players = /*#__PURE__*/function (_Component) {
       var player = {
         name: name
       };
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://localhost:8000/api/player', player).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://yoyo.ninja/api/player', player).then(function (response) {
         _this4.setState({
           isLoading: true
         });
@@ -86264,7 +86264,7 @@ var Votes = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       this.mounted = true;
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://localhost:8000/api/votes').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://yoyo.ninja/api/votes').then(function (response) {
         if (_this2.mounted) {
           console.log(response.data.data);
 
@@ -86372,7 +86372,7 @@ var Votes = /*#__PURE__*/function (_Component) {
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Votes")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, " Votes "), " "), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SelectJudge__WEBPACK_IMPORTED_MODULE_2__["default"], {
         games: this.state.data.games,
@@ -86384,7 +86384,7 @@ var Votes = /*#__PURE__*/function (_Component) {
         selectedGame: this.state.data.selectedGame,
         selectedPlayer: this.state.data.selectedPlayer,
         selectedJudge: this.state.data.selectedJudge
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), " "), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_VotePanel__WEBPACK_IMPORTED_MODULE_3__["default"], {
         data: this.state.tableData,
@@ -86393,7 +86393,7 @@ var Votes = /*#__PURE__*/function (_Component) {
         onResetClick: function onResetClick() {
           return _this3.handleResetClick();
         }
-      })));
+      }), " "), " ");
     }
   }]);
 

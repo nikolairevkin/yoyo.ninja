@@ -19,7 +19,7 @@ export default class Players extends Component {
 
     componentDidMount() {
         axios
-        .get('http://localhost:8000/api/players')
+        .get('http://yoyo.ninja/api/players')
         .then((response) => {
             this.setState({isLoading: false});
             if(response.data.status === 200) {
@@ -54,7 +54,7 @@ export default class Players extends Component {
         this.state.checked.every((player) => {
             if(player) {
                 axios
-                .delete('http://localhost:8000/api/player/' + player)
+                .delete('http://yoyo.ninja/api/player/' + player)
                 .then((response)=>{
                     this.setState({isLoading: true});
                     this.state.msg = response.data.message;
@@ -72,7 +72,7 @@ export default class Players extends Component {
     handleUpdate(name) {
         const player = {name: name};
         axios
-        .post('http://localhost:8000/api/player', player)
+        .post('http://yoyo.ninja/api/player', player)
         .then((response) => {
             this.setState({isLoading: true});
             if(response.data.success === true) {
