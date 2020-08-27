@@ -1,5 +1,5 @@
 const Constants = {
-    APP_URL: 'http://localhost:8000',
+    APP_URL: 'http://yoyo.ninja',
 };
 
 export default Constants;

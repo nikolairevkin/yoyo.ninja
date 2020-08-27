@@ -79,6 +79,9 @@ export default class VotePanel extends Component {
                             </div>
                         </CardFooter>
                     </CardBody>
+                    <CardFooter>
+                        <Button size="lg" color='danger' style={{width:'40%', marginLeft:'30%'}}>Save</Button> 
+                    </CardFooter>
                 </Card>
             </div>
         )

@@ -18,6 +18,7 @@ class App extends Component {
         super(props)
         this.state = {
             isLoggedIn : false,
+            blank: '',
         }
         if(Cookie.get('remember')) this.state.isLoggedIn = true;
         else this.state.isLoggedIn = false;

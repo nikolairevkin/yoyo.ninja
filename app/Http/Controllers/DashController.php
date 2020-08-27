@@ -15,12 +15,14 @@ class DashController extends Controller
 
     public function index() {
         $top = 5;
-        $games = Game::orderBy('created_at', 'desc')->get();
+        $game = new Game;
+        $games = $game->selectGameWithPlayer();
         if(count($games)>0){
             $selectedGame = $games->first();
             $player = new Player;
             $players = $player->getPlayersByGame($selectedGame->id, $top);
-            if(count($players) > 0){
+            $originCount = (is_array($players) ? count($players) : 0);
+            if($originCount > 0){
                 $selectedPlayer = $players[0];
                 $judge = new Judge;
                 $judges = $judge->getJudgesByGameANDPlayer($selectedGame->id, $selectedPlayer->id);
@@ -47,7 +49,11 @@ class DashController extends Controller
                 return response() -> json([
                     'status' => "failed",
                     'success' => false,
-                    'msg' => 'No players'
+                    'msg' => 'No players',
+                    'data' => [
+                        'games' => $games,
+                        'selectedGame' => $selectedGame,
+                    ]
                 ]);
             }
         }else {
@@ -61,7 +67,8 @@ class DashController extends Controller
     }
 
     public function selectPlayer(Request $request) {
-        $games = Game::orderBy('created_at', 'desc')->get();
+        $game = new Game;
+        $games = $game->selectGameWithPlayer();
         $selectedGame = $request->game;
         $game = Game::where('id', '=', $selectedGame)->first();
         $top = $request->top;
@@ -119,6 +126,33 @@ class DashController extends Controller
                 'status' => 'failed',
                 'success' => false,
                 'msg' => 'No judge',
+            ]);
+        }
+    }
+
+    public function saveVotes(Request $request) {
+        $game = $request->game;
+        $player = $request->player;
+        $judge = $request->judge;
+        $vote_plus = $request->vote_plus;
+        $vote_minus = $request->vote_minus;
+
+        $game_id = Game::where('name', '=', $game)->first()->id;
+        $player_id = Player::where('name', '=', $player)->first()->id;
+        $judge_id = Judge::where('name', '=', $judge)->first()->id;
+        $result = Judge_Player::updateOrInsert(
+            ['game_id'=> $game_id, 'player_id' => $player_id, 'judge_id' => $judge_id],
+            ['vote_plus' => $vote_plus, 'vote_minus' => $vote_minus]
+        );
+        if(!is_null($result)) {
+            return response()->json([
+                'status' => $this->status,
+                'success' => true,
+            ]);
+        } else {
+            return response() ->json([
+                'status' => 'failed',
+                'success' => false,
             ]);
         }
     }

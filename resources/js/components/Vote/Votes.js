@@ -3,6 +3,7 @@ import axios from 'axios';
 import SelectJudge from './SelectJudge';
 import VotePanel from './VotePanel';
 import Constants from './../Constants';
+import $ from 'jquery';
 
 export default class Votes extends Component {
     constructor(props) {
@@ -50,12 +51,13 @@ export default class Votes extends Component {
     }
 
     handleCreate(game, player, judge) {
+        
         var judges = this.state.tableData.judges;
         var votes_plus = this.state.tableData.votes_plus;
         var votes_minus = this.state.tableData.votes_minus;
         if (judges.includes(judge)) {
-            var msg = "Already created!";
-            alert('Already created!')
+            $("div.alert").html('Select another judge!');
+            $('div.alert').fadeIn('500').delay('3000').fadeOut('500');
         } else {
             judges.push(judge);
             votes_plus.push(0);
@@ -96,6 +98,27 @@ export default class Votes extends Component {
                 this.state.tableData.votes_minus = votes;
                 this.setState({ vote_minus });
             }
+            if(c == 'N' || c == 'P' || c == '+' || c == '-') {
+                const data = {
+                    game: this.state.tableData.game,
+                    player: this.state.tableData.player,
+                    judge: this.state.tableData.judge,
+                    vote_plus: this.state.tableData.votes_plus[this.state.tableData.votes_plus.length-1],
+                    vote_minus: this.state.tableData.votes_minus[this.state.tableData.votes_minus.length-1],
+                };
+                console.log(data);
+                axios
+                .post(Constants.APP_URL+'/api/save', data)
+                .then((response) => {
+                    if(response.status === 200){
+                        $.ajax({
+                            type:'POST',
+                            url: '/',
+                            data: {changed: true}
+                        });
+                    }
+                });
+            }
             console.log(c);
         }
     }
@@ -107,7 +130,16 @@ export default class Votes extends Component {
         var votes = this.state.tableData.votes_minus;
         votes[votes.length - 1] = 0;
         this.state.tableData.votes_minus = votes;
+        var tableData = {
+            judges: [],
+            votes_plus: [],
+            votes_minus: [],
+            game: '',
+            player: '',
+            judge: '',
+        }
         this.setState({
+            tableData: tableData,
             vote_minus: 0,
             vote_plus: 0,
         });
@@ -138,6 +170,7 @@ export default class Votes extends Component {
                         onResetClick = { () => this.handleResetClick() }
                     /> 
                 </div>
+                <div className="alert"></div>
             </div>
         );
     }

@@ -49,3 +49,5 @@ Route::get('home', 'DashController@index');
 Route::post('home', 'DashController@selectPlayer');
 
 Route::post('judge', 'DashController@selectJudge');
+
+Route::post('save', 'DashController@saveVotes');

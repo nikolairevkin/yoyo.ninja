@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {Row, Col, FormGroup, Label, Input, Button} from 'reactstrap';
+import $ from 'jquery';
 
 export default class SelectJudge extends Component{
     constructor(props) {
@@ -8,7 +9,6 @@ export default class SelectJudge extends Component{
             selectedGame : [],
             selectedPlayer: [],
             selectedJudge: [],
-            isSaved: true,
         }
     }
 
@@ -30,12 +30,8 @@ export default class SelectJudge extends Component{
 
     //when user selects the player
     onPlayerSelect(e) {
-        if(this.state.isSaved){
-            const selectedPlayer = e.target.value;
-            this.setState({selectedPlayer});
-        }else{
-            alert('The data is now saved!');
-        }
+        const selectedPlayer = e.target.value;
+        this.setState({selectedPlayer});
     }
 
     //when user selects the judge
@@ -46,7 +42,6 @@ export default class SelectJudge extends Component{
 
     //when user clickes the create button
     onCreateClick() {
-        this.setState({isSaved: false});
         console.log('select', this.state.selectedGame);
         if(!this.state.selectedGame) this.state.selectedGame = this.props.selectedGame.name;
         if(!this.state.selectedPlayer) this.state.selectedPlayer = this.props.selectedPlayer.name;
@@ -110,6 +105,7 @@ export default class SelectJudge extends Component{
                         </Button>
                     </Col>
                 </Row>
+                <div className="alert"></div>
             </div>
         );
     }
